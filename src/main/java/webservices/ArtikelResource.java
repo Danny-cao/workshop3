@@ -3,6 +3,8 @@ package webservices;
 
 import model.Artikel;
 
+import java.util.ArrayList;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -14,9 +16,18 @@ public class ArtikelResource {
 
     @GET
     @Produces("application/json")
-    public Response findArtikel(){
-        Artikel artikel = new Artikel("test", 2);
-        return Response.ok(artikel).build();
+    public Response findAll(){
+    	
+        Artikel artikel1 = new Artikel("schoenen", 2);
+        Artikel artikel2 = new Artikel("brood", 3);
+        Artikel artikel3 = new Artikel("cola", 1);
+        
+        ArrayList list = new ArrayList<>();
+        list.add(artikel1);
+        list.add(artikel2);
+        list.add(artikel3);
+        
+        return Response.ok(list).build();
     }
 
     @POST
@@ -25,4 +36,8 @@ public class ArtikelResource {
 
         return Response.ok().build();
     }
+    
+    // update artikel ....
+    
+    // verwijder een artikel ....
 }
