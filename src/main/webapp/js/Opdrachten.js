@@ -1,4 +1,18 @@
 
+
+// Voorbeeld POST
+function sendArtikel(){
+    document.querySelector("#submitVoorbeeld").addEventListener("click", function() {
+        var formData = new FormData(document.querySelector("#voorbeeldPOST"));
+        var encData = new URLSearchParams(formData.entries());
+        fetch("restservices/artikel", { method: 'POST', body: encData })
+            .then(response => response.json()).then( artikel => console.log(artikel));
+    });
+} sendArtikel();
+
+
+
+
 //Opdracht1 
 $("#submitOpdracht1").click(function() {
 	$.ajax({

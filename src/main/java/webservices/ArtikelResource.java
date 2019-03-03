@@ -5,6 +5,7 @@ import model.Artikel;
 
 import java.util.ArrayList;
 
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -30,11 +31,15 @@ public class ArtikelResource {
         return Response.ok(list).build();
     }
 
+    //Voorbeeld POST functie
     @POST
     @Produces("application/json")
-    public Response saveArtikel(){
-
-        return Response.ok().build();
+    public Response saveArtikel(@FormParam("naam") String naam, @FormParam("prijs") double prijs){
+    	
+    	Artikel a = new Artikel(naam, prijs);
+    	System.out.println(a.toString());
+        return Response.ok(a).build();
+        
     }
     
     // update artikel ....
