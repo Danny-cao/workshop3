@@ -14,21 +14,16 @@ import javax.ws.rs.core.Response;
 
 @Path("/artikel")
 public class ArtikelResource {
+	
+	private ArtikelService service = new ArtikelService();
 
     @GET
     @Produces("application/json")
     public Response findAll(){
     	
-        Artikel artikel1 = new Artikel("schoenen", 2);
-        Artikel artikel2 = new Artikel("brood", 3);
-        Artikel artikel3 = new Artikel("cola", 1);
+        ArrayList<Artikel> artikelen = service.find();
         
-        ArrayList list = new ArrayList<>();
-        list.add(artikel1);
-        list.add(artikel2);
-        list.add(artikel3);
-        
-        return Response.ok(list).build();
+        return Response.ok(artikelen).build();
     }
 
     //Voorbeeld POST functie
@@ -36,8 +31,8 @@ public class ArtikelResource {
     @Produces("application/json")
     public Response saveArtikel(@FormParam("naam") String naam, @FormParam("prijs") double prijs){
     	
-    	Artikel a = new Artikel(naam, prijs);
-    	System.out.println(a.toString());
+    	Artikel a = service.save(new Artikel(naam, prijs));
+    	
         return Response.ok(a).build();
         
     }
